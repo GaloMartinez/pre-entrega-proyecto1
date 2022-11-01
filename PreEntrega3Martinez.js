@@ -26,7 +26,7 @@ class Corredor {
 }
 const arrayCorredoresStorage = localStorage.getItem("arrayCorredores");
 
-if(arrayCorredoresStorage !== null && arrayCorredoresStorage !== "null"){
+if (arrayCorredoresStorage !== null && arrayCorredoresStorage !== "null") {
 	arrayCorredores = JSON.parse(arrayCorredoresStorage);
 	corredoresDisponibles = arrayCorredores.length;
 	renderizarTabla()
@@ -38,10 +38,10 @@ console.log(arrayCorredores);
 const agregar = document.getElementById("agregar");
 
 
- 
+
 
 agregar.addEventListener("click", () => {
-	
+
 
 
 	let nombre = document.getElementById("nombre").value;
@@ -51,10 +51,10 @@ agregar.addEventListener("click", () => {
 	if (edad >= 18) {
 		corredoresDisponibles++;
 		arrayCorredores.push(new Corredor(nombre, edad, casco));
-		
+
 
 	} else {
-		
+
 		alert("Eres menor, no puedes ingresar")
 	}
 
@@ -181,14 +181,14 @@ function seguir(corredoresDisponibles) {
 
 
 //CREAMOS TABLA
-function renderizarTabla(){
+function renderizarTabla() {
 	const tbodyDatosCorredores = document.getElementById("tbodyDatosCorredores");
 	tbodyDatosCorredores.innerHTML = "";
-	
-	for(const corredor of arrayCorredores){
-		
+
+	for (const corredor of arrayCorredores) {
+
 		const tr = document.createElement("tr");
-	
+
 		const td1 = document.createElement("td");
 		td1.innerText = corredor.nombre;
 
@@ -196,10 +196,10 @@ function renderizarTabla(){
 		td2.innerText = corredor.edad;
 
 		const td3 = document.createElement("td");
-	    corredor.casco == true  ? td3.innerText = "Si" : td3.innerText = "No" 
+		corredor.casco == true ? td3.innerText = "Si" : td3.innerText = "No"
 
-	
-		
+
+
 		tr.appendChild(td1);
 		tr.appendChild(td2);
 		tr.appendChild(td3);
