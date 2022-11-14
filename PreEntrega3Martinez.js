@@ -1,12 +1,16 @@
 'use strict'
-
 //PROYECTO SERVICIO DE CARRERAS DE KARTINGS 
 
 
 
-alert("Bienvenido a Kartodromo Buenos Aires")
 const valor = 1200;
-alert("El valor de la inscripcion es " + valor);
+Swal.fire({
+	title: 'Bienvenido',
+	text: 'El valor de la inscripcion es $' + valor,
+	icon: 'info',
+	confirmButtonText: 'Ok'
+});
+
 let arrayCorredores = [];
 let corredoresDisponibles = 0;
 const arrayCircuitos = ["Cerrado", "Chico", "Grande"];
@@ -24,7 +28,7 @@ class Corredor {
 	}
 
 }
-const arrayCorredoresStorage = localStorage.getItem("arrayCorredores");
+let arrayCorredoresStorage = localStorage.getItem("arrayCorredores");
 
 if (arrayCorredoresStorage !== null && arrayCorredoresStorage !== "null") {
 	arrayCorredores = JSON.parse(arrayCorredoresStorage);
@@ -55,7 +59,12 @@ agregar.addEventListener("click", () => {
 
 	} else {
 
-		alert("Eres menor, no puedes ingresar")
+		Swal.fire({
+			title: 'Denegado',
+			text: 'Eres menor, no puedes ingresar',
+			icon: 'error',
+			confirmButtonText: 'Ok'
+		});
 	}
 
 	localStorage.setItem("arrayCorredores", JSON.stringify(arrayCorredores));
@@ -77,7 +86,13 @@ agregar.addEventListener("click", () => {
 
 const circuitoBoton = document.getElementById("circuitoBoton");
 circuitoBoton.addEventListener("click", () => {
-	alert("Son " + corredoresDisponibles + " participantes en la carrera ");
+	Swal.fire({
+		title: 'Cantidad de corredores',
+		text: "Son " + corredoresDisponibles + " participantes en la carrera ",
+		icon: 'info',
+		confirmButtonText: 'Ok'
+	});
+
 	localStorage.removeItem("arrayCorredores");
 	elegirCircuito(corredoresDisponibles);
 
@@ -94,10 +109,13 @@ circuitoBoton.addEventListener("click", () => {
 
 
 function elegirCircuito(corredoresDisponibles) {
-	const select = document.getElementById("seleccionCircuitos");
+	let select = [];
+	select = document.getElementById("seleccionCircuitos");
 	let arrayCircuitos = [];
 	if (corredoresDisponibles <= 5) {
-		alert("Pueden correr en cualquiera de los 3 circuitos");
+
+		Swal.fire("Pueden correr en cualquiera de los 3 circuitos")
+
 		arrayCircuitos = ["Cerrado", "Chico", "Grande"];
 
 
@@ -107,7 +125,8 @@ function elegirCircuito(corredoresDisponibles) {
 
 
 	} else if (corredoresDisponibles > 5 && corredoresDisponibles <= 10) {
-		alert("Pueden correr en el circuito chico o circuito grande");
+		Swal.fire("Pueden correr en el circuito chico o circuito grande")
+
 		arrayCircuitos = ["Chico", "Grande"];
 
 
@@ -115,15 +134,17 @@ function elegirCircuito(corredoresDisponibles) {
 
 
 	} else if (corredoresDisponibles > 10 && corredoresDisponibles < 15) {
-		alert("Solamente pueden correr en el circuito grande")
+		Swal.fire("Solamente pueden correr en el circuito grande")
 		arrayCircuitos = ["Grande"];
 
 	} else if (corredoresDisponibles > 15) {
-		alert("Son demasiados corredores");
+		Swal.fire("Son demasiados corredores")
+
 
 	}
+
 	for (let i = 0; i < arrayCircuitos.length; i++) {
-		var opt = document.createElement('option');
+		let opt = document.createElement('option');
 		opt.value = i;
 		opt.innerHTML = arrayCircuitos[i];
 		select.appendChild(opt);
@@ -160,15 +181,34 @@ function seguir(corredoresDisponibles) {
 	function calcularValor() {
 		const valorTotal = (resultadoFiltro.length * valorCasco) + (corredoresDisponibles * valor);
 		return valorTotal;
+		
 
 	}
-
-	alert("Son " + corredoresDisponibles + " corredores disponibles, " + resultadoFiltro.length + " cascos adicionales,  el valor total es : " + calcularValor());
+	Swal.fire({
+		title: 'Confirmacion de reserva',
+		icon: 'warning',
+		text: `Son  ${corredoresDisponibles} corredores disponibles.
+		${resultadoFiltro.length}  cascos adicionales. 
+		El valor total es : $${calcularValor()}`,
+		confirmButtonText: 'Si',
+		showDenyButton: true,
+		denyButtonText: 'No',
+	}).then((result) => {
+		if (result.isConfirmed) {
+			console.log("Se confirmo la reserva");
+			
+		}
+		if (result.isDenied) {
+			console.log("Se cancelo la reserva");
+			
+			
+		}
+	})
+	localStorage.removeItem("arrayCorredores");
+	arrayCorredoresStorage = [];
 	arrayCorredores = [];
 	renderizarTabla()
 }
-
-
 
 
 

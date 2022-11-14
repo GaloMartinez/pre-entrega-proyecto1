@@ -1,3 +1,7 @@
+body {
+    background-image: url("karting6.jpg");
+}
+
 table {
 
     border: solid #ccc 1px;
@@ -53,8 +57,9 @@ tr:hover {
     color: rgb(151, 151, 151)
 }
 
+
 #nombre,
-#edad,
+#edad
 {
 background-color: rgb(255, 255, 255);
 border-radius: 5px;
@@ -89,6 +94,8 @@ border: 1px solid rgb(211, 211, 211);
     margin: 0 auto;
     padding: 80px 20px;
     width: 30%;
-    background-color: rgba(207, 201, 201, 0.103);
-
+    /* background-color: rgba(207, 201, 201, 0.103); */
+    background-color: gainsboro;
+    opacity: 0.9;
+    background-position: right center;
 }
