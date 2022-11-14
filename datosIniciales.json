@@ -1,0 +1,6 @@
+{
+ "valor" : 1200,
+"valorCasco" : 350,
+"arrayCircuitos" : ["Cerrado", "Chico", "Grande"]
+
+}

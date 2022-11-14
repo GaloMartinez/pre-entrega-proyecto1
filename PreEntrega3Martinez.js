@@ -1,12 +1,14 @@
 'use strict'
 //PROYECTO SERVICIO DE CARRERAS DE KARTINGS 
+let valor;
+let valorCasco;
+let alertMenor;
+//const {valor, valorCasco, alertMenor} = datosIniciales();
+datosIniciales();
 
-
-
-const valor = 1200;
 Swal.fire({
 	title: 'Bienvenido',
-	text: 'El valor de la inscripcion es $' + valor,
+	text: `El valor de la inscripcion es $ ${valor}`,
 	icon: 'info',
 	confirmButtonText: 'Ok'
 });
@@ -15,7 +17,7 @@ let arrayCorredores = [];
 let corredoresDisponibles = 0;
 const arrayCircuitos = ["Cerrado", "Chico", "Grande"];
 
-const valorCasco = 350;
+
 
 //LISTADO DE PERSONAS
 
@@ -61,7 +63,7 @@ agregar.addEventListener("click", () => {
 
 		Swal.fire({
 			title: 'Denegado',
-			text: 'Eres menor, no puedes ingresar',
+			text: alertMenor,
 			icon: 'error',
 			confirmButtonText: 'Ok'
 		});
@@ -109,8 +111,8 @@ circuitoBoton.addEventListener("click", () => {
 
 
 function elegirCircuito(corredoresDisponibles) {
-	let select = [];
-	select = document.getElementById("seleccionCircuitos");
+
+	const select = document.getElementById("seleccionCircuitos");
 	let arrayCircuitos = [];
 	if (corredoresDisponibles <= 5) {
 
@@ -181,7 +183,7 @@ function seguir(corredoresDisponibles) {
 	function calcularValor() {
 		const valorTotal = (resultadoFiltro.length * valorCasco) + (corredoresDisponibles * valor);
 		return valorTotal;
-		
+
 
 	}
 	Swal.fire({
@@ -196,21 +198,31 @@ function seguir(corredoresDisponibles) {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			console.log("Se confirmo la reserva");
-			
+
 		}
 		if (result.isDenied) {
 			console.log("Se cancelo la reserva");
-			
-			
+
+
 		}
 	})
-	localStorage.removeItem("arrayCorredores");
-	arrayCorredoresStorage = [];
-	arrayCorredores = [];
-	renderizarTabla()
+	limpiarDatos();
 }
 
-
+function limpiarDatos() {
+	localStorage.removeItem("arrayCorredores");
+	//Vacio select y se agrega la opcion por defecto
+	const select = document.getElementById("seleccionCircuitos");
+	select.innerHTML = "";
+	let opt = document.createElement('option');
+	opt.value = "";
+	opt.innerHTML = "Seleccione un circuito";
+	select.appendChild(opt);
+	arrayCorredoresStorage = [];
+	corredoresDisponibles = 0;
+	arrayCorredores = [];
+	renderizarTabla();
+}
 
 
 
@@ -248,3 +260,15 @@ function renderizarTabla() {
 	}
 }
 
+
+
+async function datosIniciales(){
+	const response = await fetch('https://api.npoint.io/bb344c92519db368616e');
+		const datos = await response.json();
+	
+		
+		valor = datos.valor;
+		valorCasco = datos.valorCasco;
+		alertMenor = datos.alertMenor;
+
+}	
