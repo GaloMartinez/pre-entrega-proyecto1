@@ -1,5 +1,7 @@
 body {
-    background-image: url("karting6.jpg");
+    background-image: url("karting5.jpeg");
+    background-size: 100% 100%;
+    background-attachment: fixed;
 }
 
 table {
@@ -10,6 +12,7 @@ table {
     border-radius: 5px;
     box-shadow: 0 3px #ccc;
     font-style: inherit;
+   display: center;
 }
 
 
@@ -17,17 +20,18 @@ table {
 
 th,
 td {
-    border-radius: 5px rgb(168, 162, 162);
+    border-radius: 5px rgba(168, 162, 162, 0.836);
     padding: 5px;
     text-align: center;
     font-family: system-ui;
-    color: rgb(151, 151, 151)
+    color: rgba(63, 66, 66, 0.959)
+    
 }
 
 th {
     border-radius: 2px;
-    background-color: rgba(39, 179, 160, 0.644);
-    color: white;
+    background-color: rgba(39, 179, 160, 0.733);
+    color: rgba(255, 255, 255, 0.822);
 
 }
 
@@ -37,7 +41,7 @@ tr:nth-child(odd) {
 
 
 tr:hover {
-    background-color: #aaa;
+    background-color: rgba(170, 170, 170, 0.651);
     cursor: pointer;
 }
 
@@ -46,7 +50,9 @@ tr:hover {
     margin: 0 auto;
     font-size: 20px;
     font-family: system-ui;
-    color: rgb(151, 151, 151)
+    color: rgb(90, 86, 86)
+    
+   
 }
 
 #formularioCircuitos {
@@ -54,7 +60,7 @@ tr:hover {
     width: 200px;
     margin: 0 auto;
     font-family: system-ui;
-    color: rgb(151, 151, 151)
+    color: rgb(90, 86, 86)
 }
 
 
@@ -64,6 +70,8 @@ tr:hover {
 background-color: rgb(255, 255, 255);
 border-radius: 5px;
 border: 1px solid rgb(211, 211, 211);
+
+
 }
 
 #agregar,
@@ -72,13 +80,14 @@ border: 1px solid rgb(211, 211, 211);
     margin: 0 auto;
     border-radius: 5px;
     border: 1px solid rgb(211, 211, 211);
+   
 
 }
 
 #siguiente {
-    width: 50%;
+    width:50%;
     align-items: center;
-    display: flex;
+    display: block;
     margin: 0 auto;
     border-radius: 5px;
     border: 1px solid rgb(211, 211, 211);
@@ -94,8 +103,8 @@ border: 1px solid rgb(211, 211, 211);
     margin: 0 auto;
     padding: 80px 20px;
     width: 30%;
-    /* background-color: rgba(207, 201, 201, 0.103); */
-    background-color: gainsboro;
+    background-color: rgba(220, 220, 220, 0.829);
     opacity: 0.9;
     background-position: right center;
+    
 }

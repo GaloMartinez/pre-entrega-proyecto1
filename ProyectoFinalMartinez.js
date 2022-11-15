@@ -3,15 +3,16 @@
 let valor;
 let valorCasco;
 let alertMenor;
-//const {valor, valorCasco, alertMenor} = datosIniciales();
+
 datosIniciales();
 
-Swal.fire({
-	title: 'Bienvenido',
-	text: `El valor de la inscripcion es $ ${valor}`,
-	icon: 'info',
-	confirmButtonText: 'Ok'
-});
+setTimeout(() => Swal.fire({
+    title: 'Bienvenido',
+    text: `El valor de la inscripcion es $ ${valor}`,
+    icon: 'info',
+    confirmButtonText: 'Ok'
+}), 1000)
+
 
 let arrayCorredores = [];
 let corredoresDisponibles = 0;
