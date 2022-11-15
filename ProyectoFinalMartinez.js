@@ -7,10 +7,10 @@ let alertMenor;
 datosIniciales();
 
 setTimeout(() => Swal.fire({
-    title: 'Bienvenido',
-    text: `El valor de la inscripcion es $ ${valor}`,
-    icon: 'info',
-    confirmButtonText: 'Ok'
+	title: 'Bienvenido',
+	text: `El valor de la inscripcion es $ ${valor}`,
+	icon: 'info',
+	confirmButtonText: 'Ok'
 }), 1000)
 
 
@@ -263,13 +263,13 @@ function renderizarTabla() {
 
 
 
-async function datosIniciales(){
+async function datosIniciales() {
 	const response = await fetch('https://api.npoint.io/bb344c92519db368616e');
-		const datos = await response.json();
-	
-		
-		valor = datos.valor;
-		valorCasco = datos.valorCasco;
-		alertMenor = datos.alertMenor;
+	const datos = await response.json();
+
+
+	valor = datos.valor;
+	valorCasco = datos.valorCasco;
+	alertMenor = datos.alertMenor;
 
 }	
