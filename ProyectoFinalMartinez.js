@@ -91,15 +91,22 @@ const circuitoBoton = document.getElementById("circuitoBoton");
 circuitoBoton.addEventListener("click", () => {
 	Swal.fire({
 		title: 'Cantidad de corredores',
-		text: "Son " + corredoresDisponibles + " participantes en la carrera ",
+		text: `Son ${corredoresDisponibles}  participantes en la carrera `,
 		icon: 'info',
 		confirmButtonText: 'Ok'
 	});
 
-	localStorage.removeItem("arrayCorredores");
+	//Si se arrepiente y quiere agregar mas corredores despues de confirmar, se limpia el select y se adapta a la cantidad de corredores que confirme.
+
+	const select = document.getElementById("seleccionCircuitos");
+	select.innerHTML = "";
+	let opt = document.createElement('option');
+	opt.value = "";
+	opt.innerHTML = "Seleccione un circuito";
+	select.appendChild(opt);
 	elegirCircuito(corredoresDisponibles);
-
-
+	
+	
 })
 
 
